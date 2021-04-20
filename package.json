@@ -12,6 +12,11 @@
     "mongoose": "^5.8.9"
   },
   "devDependencies": {
-    "nodemon": "^2.0.2"
+    "eslint": "^7.24.0",
+    "eslint-config-airbnb-base": "^14.2.1",
+    "eslint-config-prettier": "^8.2.0",
+    "eslint-plugin-import": "^2.22.1",
+    "nodemon": "^2.0.2",
+    "prettier": "^2.2.1"
   }
 }
