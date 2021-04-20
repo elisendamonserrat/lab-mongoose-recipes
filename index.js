@@ -28,24 +28,38 @@ mongoose
     return addRecipe
     */
 
-    //Iteration 3: Insert multiple recipes
+    // Iteration 3: Insert multiple recipes
     let addAllRecipes = Recipe.insertMany(data)
      .then((recipes) => console.log(recipes));
     return addAllRecipes;
   })
   .then(() => {
-    //Print recipes names in the console:
+    // Print recipes names in the console:
     Recipe.find({}, { title: 1, _id: 0}).then(title => {
       console.log(title)
     });
 
-    //Iteration 4 - Update recipe:
-    const updateRigatoniDuration = Recipe.updateOne({ title: "Rigatoni alla Genovese"}, { duration: 100});
+    // Iteration 4 - Update recipe:
+    const updateRigatoniDuration = Recipe.updateOne({title: "Rigatoni alla Genovese"}, { duration: 100});
     return updateRigatoniDuration
   })
-  .then(() => {
+  .then((updatedRecipe) => {
+    console.log('On iteration 4 we update 1 recipe', updatedRecipe);
 
+    // Iteration 5 - Remove a recipe
+    const removeCarrotCake = Recipe.deleteOne({title: "Carrot Cake"});
+    return removeCarrotCake;
+  })
+  .then((removedRecipe) => {
+    console.log(`Iteration 5 we removed one recipe:`, removedRecipe);
+
+    // Iteration 6 - Close the Database
+    const closeDB = mongoose.connection.close();
+    return closeDB;
+  })
+  .then(() => {
+    console.log("Database has been closed!")
   })
   .catch(error => {
-    console.error('Error connecting to the database', error);
+    console.error('Error on the lab assigment', error);
   });
